@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f5">
+  <meta name="description" content="Create, refine and export clear legal document drafts with LegalEase.">
+  <title>LegalEase — Document Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#top" aria-label="LegalEase home"><span class="brand-mark"><svg viewBox="0 0 36 36" aria-hidden="true"><path d="M18 5v25M9 10h18M10 10l-5 10h10L10 10Zm16 0-5 10h10l-5-10ZM12 30h12"/><circle cx="18" cy="6" r="2"/></svg></span><span>legal<span class="brand-light">ease</span><small>DOCUMENT STUDIO</small></span></a>
+      <div class="workspace-label">WORKSPACE</div>
+      <button class="nav-item active" id="newDraftNav"><span class="nav-icon">＋</span> New document <span class="nav-shortcut">⌘ N</span></button>
+      <button class="nav-item" id="templatesNav"><span class="nav-icon">▤</span> Templates <span class="soon-dot"></span></button>
+      <div class="side-divider"></div>
+      <div class="workspace-label recent-label">RECENT DOCUMENTS</div>
+      <div id="recentList" class="recent-list"><div class="empty-recent"><span>▧</span><p>Your drafts will<br>appear here</p></div></div>
+      <div class="sidebar-bottom"><div class="secure-card"><span class="secure-icon">✳</span><div><b>Your work, private</b><p>Drafts stay in this browser session.</p></div></div><div class="profile"><div class="avatar">LE</div><div><b>My workspace</b><span>Personal plan</span></div><span class="profile-more">•••</span></div></div>
+    </aside>
+
+    <main id="top" class="main-area">
+      <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <b>New document</b></div><div class="top-actions"><span class="privacy-label"><i></i> Private workspace</span><button class="help-button" id="helpButton" aria-label="About LegalEase">?</button></div></header>
+      <div class="content-wrap">
+        <section class="welcome"><div class="eyebrow"><span class="eyebrow-line"></span> YOUR AI-ASSISTED DOCUMENT WORKSPACE</div><h1>Good agreements<br><em>start with clarity.</em></h1><p>Bring your key details. We’ll help shape them into a thoughtful first draft.</p></section>
+
+        <div class="workspace-grid">
+          <section class="form-card card">
+            <div class="card-heading"><div><span class="step-label">STEP 01 <span>·</span> DETAILS</span><h2>Tell us about your agreement</h2><p>A few essentials are all we need to get started.</p></div><div class="heading-icon">✳</div></div>
+            <form id="documentForm">
+              <label class="field-label" for="documentType">DOCUMENT TYPE <span class="required">*</span></label>
+              <div class="select-wrap"><select id="documentType" required><option value="" disabled selected>Choose a document type</option><option>Non-Disclosure Agreement</option><option>Freelance Service Agreement</option><option>Residential Lease Agreement</option><option>Employment Agreement</option><option>Custom Agreement</option></select><span>⌄</span></div>
+              <div class="field-grid"><div><label class="field-label" for="firstParty">FIRST PARTY <span class="required">*</span></label><input id="firstParty" required maxlength="160" placeholder="e.g. Priya Kumar, Freelancer"><small class="field-hint">Name and role</small></div><div><label class="field-label" for="secondParty">SECOND PARTY <span class="required">*</span></label><input id="secondParty" required maxlength="160" placeholder="e.g. Acme Studio, Client"><small class="field-hint">Name and role</small></div></div>
+              <div class="field-grid"><div><label class="field-label" for="effectiveDate">EFFECTIVE DATE <span class="required">*</span></label><input id="effectiveDate" type="date" required></div><div><label class="field-label" for="jurisdiction">JURISDICTION</label><div class="select-wrap"><select id="jurisdiction"><option>India</option><option>Tamil Nadu, India</option><option>Other / to be confirmed</option></select><span>⌄</span></div></div></div>
+              <label class="field-label terms-label" for="terms">KEY TERMS <span class="required">*</span></label><textarea id="terms" required maxlength="5000" rows="5" placeholder="Add the important points you want this agreement to cover. Put each term on a new line or separate them with semicolons."></textarea><div class="textarea-meta"><span>Keep it simple — you can refine the draft later.</span><span id="charCount">0 / 5000</span></div>
+              <div class="language-row"><span class="field-label">DRAFT LANGUAGE</span><div class="language-toggle"><button type="button" class="language-option selected" data-language="English">English</button><button type="button" class="language-option" data-language="Tamil">தமிழ்</button></div></div>
+              <button class="generate-button" id="generateButton" type="submit"><span class="sparkle">✳</span><span class="button-copy">Create my first draft<small>Usually takes about 20 seconds</small></span><span class="button-arrow">→</span></button>
+              <p class="form-footnote"><span>♧</span> Your information is only used to prepare this draft.</p>
+            </form>
+          </section>
+
+          <section class="preview-card card" id="previewCard">
+            <div class="preview-top"><div><span class="step-label">STEP 02 <span>·</span> YOUR DRAFT</span><h2>Document preview</h2></div><span id="statusBadge" class="status-badge"><i></i> READY WHEN YOU ARE</span></div>
+            <div id="emptyState" class="preview-empty"><div class="paper-illustration"><div class="paper-shadow"></div><div class="paper"><span class="paper-small-line"></span><span class="paper-title-line"></span><span class="paper-line"></span><span class="paper-line short"></span><span class="paper-gap"></span><span class="paper-line"></span><span class="paper-line"></span><span class="paper-line medium"></span><span class="paper-gap"></span><span class="paper-line"></span><span class="paper-line short"></span><span class="paper-seal">✳</span></div><span class="sparkle s1">✳</span><span class="sparkle s2">✦</span></div><h3>Your document will take shape here</h3><p>Complete the details on the left and we’ll prepare a clear, editable first draft for you.</p><div class="preview-features"><span><i>✓</i> Editable</span><span><i>✓</i> Easy to export</span><span><i>✓</i> Made for review</span></div></div>
+            <div id="loadingState" class="loading-state hidden"><div class="loader-mark">✳</div><h3>Putting your draft together</h3><p>Organising your details into a clear document…</p><div class="loading-track"><span></span></div><small>This can take a little moment</small></div>
+            <div id="errorState" class="error-state hidden"><span>!</span><h3>We couldn’t create that draft</h3><p id="errorMessage">Please check the details and try again.</p><button id="retryButton" class="text-button">Try again →</button></div>
+            <div id="editorState" class="editor-state hidden"><div class="editor-toolbar"><span class="draft-label"><i></i> EDITABLE DRAFT <span id="draftMode"></span></span><button id="copyButton" class="tool-button" type="button">▣ <span>Copy</span></button></div><div class="document-title-row"><span class="doc-type-icon">▤</span><div><b id="draftTitle">Agreement</b><small>Created just now · Review before use</small></div><button id="resetButton" class="reset-button" title="Start another draft">↗</button></div><textarea id="draftContent" aria-label="Editable document draft" spellcheck="false"></textarea><div class="export-row"><div><b>Ready to take it with you?</b><span>Choose a format to download your draft.</span></div><div class="export-buttons"><button data-format="docx" class="export-button primary-export"><span>↓</span> DOCX</button><button data-format="pdf" class="export-button"><span>↓</span> PDF</button><button data-format="txt" class="export-button"><span>↓</span> TXT</button></div></div><div class="review-note"><span>ⓘ</span><p><b>A note about your draft</b><br>This is an AI-assisted starting point, not legal advice. Ask a qualified legal professional to review it before signing.</p></div></div>
+          </section>
+        </div>
+        <footer class="page-footer"><span>© 2026 LegalEase <i>·</i> Built for clearer agreements.</span><button id="footerAbout" type="button">About this project <span>↗</span></button></footer>
+      </div>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status"></div>
+  <dialog id="aboutDialog" class="about-dialog"><button id="closeDialog" class="dialog-close" aria-label="Close">×</button><div class="dialog-mark">✳</div><span class="step-label">A STUDENT PROJECT</span><h2>LegalEase</h2><p>A thoughtful first step toward making everyday agreements easier to understand and prepare.</p><div class="about-divider"></div><p class="dialog-note">LegalEase creates draft templates for learning and review. It does not provide legal advice. Always consult a qualified professional before relying on a legal document.</p><small>Designed for the Naan Mudhalvan project</small></dialog>
+  <script src="/app.js" defer></script>
+</body>
+</html>
